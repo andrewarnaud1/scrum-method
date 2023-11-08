@@ -1,1 +1,1 @@
-from .restaurant import RestaurantForm
+from .restaurant import RestaurantForm, AdresseFormSet

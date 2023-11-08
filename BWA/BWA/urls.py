@@ -18,9 +18,15 @@ from django.contrib import admin
 from django.urls import path
 from django.urls import include
 
+from map import views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('restaurant/', include('restaurant.urls')),
+
+    # path('utilisateur/', include('restaurant.urls')),
+    
+    path('map/', views.map_view, name='map'),
 ]

@@ -1,1 +1,1 @@
-from .restaurant import Restaurant
+from .restaurant import Restaurant, Adresse
