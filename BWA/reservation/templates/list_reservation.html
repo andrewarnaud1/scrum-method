@@ -3,13 +3,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Liste des restaurants</title>
+    <title>Liste des reservations</title>
   </head>
   <body>
-    <h1>Liste des restaurants</h1>
+    <h1>Liste des reservations</h1>
     <ul>
-      {% for restaurant in restaurants %}
-        <li>{{ restaurant.raison_sociale }}</li>
+      {% for reservation in reservations %}
+        <li>{{ reservation.raison_sociale }}</li>
       {% endfor %}
     </ul>
   </body>
