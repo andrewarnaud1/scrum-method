@@ -3,7 +3,6 @@ from django.db import models
 
 class Restaurant(models.Model):
     raison_sociale = models.CharField(max_length=100)
-    addresse = models.CharField(max_length=200)
     telephone = models.CharField(max_length=20)
     email = models.EmailField()
     description = models.TextField()
@@ -13,7 +12,7 @@ class Restaurant(models.Model):
 
 
 class Adresse(models.Model):
-    restaurant = models.OneToOneField(Restaurant)
+    restaurant = models.OneToOneField(Restaurant, on_delete=models.CASCADE)
     street = models.CharField(max_length=200)
     zip = models.IntegerField()
     city = models.CharField(max_length=50)
@@ -22,4 +21,4 @@ class Adresse(models.Model):
     lng = models.DecimalField(max_digits=9, decimal_places=6)
 
     def __str__(self):
-        return f"{self.restaurant},{self.street}, {self.city} ({self.country})"
+        return f"{self.restaurant.nom},{self.street}, {self.city} ({self.country})"

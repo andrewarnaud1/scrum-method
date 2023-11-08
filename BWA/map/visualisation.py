@@ -1,12 +1,17 @@
 import pandas as pd
 import folium
 from folium.plugins import MarkerCluster
+import sqlite3
 
 # Créez la carte de base
 m = folium.Map(location=[48.86762, 2.3624], tiles="OpenStreetMap", zoom_start=5)
 
-# Lisez les données
-df = pd.read_csv("restaurants_geo.csv")
+conn = sqlite3.connect("db.sqlite3")  # Replace with your actual database file
+print(conn)
+
+# Read data from the database
+query = "SELECT * FROM restaurants"  # Adjust your SQL query as needed
+df = pd.read_sql_query(query, conn)
 
 # Créez un groupe de marqueurs
 marker_cluster = MarkerCluster().add_to(m)
@@ -45,4 +50,4 @@ for i, row in df.iterrows():
     # Ajoutez la popup à côté du marqueur
     folium.Popup(popup_text).add_to(marker)
 
-m.save("index.html")
+m.save("templates/map.html")
