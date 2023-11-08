@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
-from .forms import UserSignUpForm
+from utilisateur.forms import UserSignUpForm
 
 def signup(request):
     if request.method == 'POST':
@@ -12,4 +12,4 @@ def signup(request):
             return redirect('home')
     else:
         form = UserSignUpForm()
-    return render(request, 'signup.html', {'form': form})
+    return render(request, 'connexion.html', {'form': form})
