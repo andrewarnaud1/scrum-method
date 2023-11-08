@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- DEBUT CONTENU -->
+<form class="row g-3" method="post" novalidate enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="card mb-3">
+        <div class="card-header">
+            <h5 class="card-title">Utilisateur</h5>
+        </div>
+        <div class="card-body bg-light">
+            <div class="row">
+                {% comment %} GESTION DES ERREURS {% endcomment %}
+                {% if utilisateur_form.errors %}
+                {% for error in utilisateur_form.non_field_errors %}
+                <div class="alert alert-danger">
+                    <strong>{{ error|escape }}</strong>
+                </div>
+                {% endfor %}
+                {% endif %}
+                <div class="col-md-1">
+                    <label for="{{ utilisateur_form.is_active.id_for_label }}">Actif<span class="text-danger">*</span></label>
+                    <div class="form-check form-switch">
+                        {{ utilisateur_form.is_active }}
+                        {% if utilisateur_form.is_active.errors %}
+                        {% for error in utilisateur_form.is_active.errors %}
+                        <p class="text-danger">{{ error|escape }}</p>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label for="{{ utilisateur_form.civilite.id_for_label }}" class="form-label">Civilité<span class="text-danger">*</span> </label>
+                    {{ utilisateur_form.civilite }}
+                    {% if utilisateur_form.civilite.errors %}
+                    {% for error in utilisateur_form.civilite.errors %}
+                    <p class="text-danger">{{ error|escape }}</p>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="col-md-4">
+                    <label for="{{ utilisateur_form.first_name.id_for_label }}" class="form-label">Prénom<span class="text-danger">*</span> </label>
+                    {{ utilisateur_form.first_name }}
+                    {% if utilisateur_form.first_name.errors %}
+                    {% for error in utilisateur_form.first_name.errors %}
+                    <p class="text-danger">{{ error|escape }}</p>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="col-md-5">
+                    <label for="{{ utilisateur_form.last_name.id_for_label }}" class="form-label">Nom<span class="text-danger">*</span> </label>
+                    {{ utilisateur_form.last_name }}
+                    {% if utilisateur_form.last_name.errors %}
+                    {% for error in utilisateur_form.last_name.errors %}
+                    <p class="text-danger">{{ error|escape }}</p>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+
+                <div class="col-md-4">
+                    <label for="{{ utilisateur_form.email.id_for_label }}" class="form-label">Email<span class="text-danger">*</span> </label>
+                    {{ utilisateur_form.email }}
+                    {% if utilisateur_form.email.errors %}
+                    {% for error in utilisateur_form.email.errors %}
+                    <p class="text-danger">{{ error|escape }}</p>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+                {% if 'groups' in utilisateur_form.fields %}
+                <div class="col-md-4">
+                    <label for="{{ utilisateur_form.groups.id_for_label }}" class="form-label">Rôle<span class="text-danger">*</span> </label>
+                    {{ utilisateur_form.groups }}
+                    {% if utilisateur_form.groups.errors %}
+                    {% for error in utilisateur_form.groups.errors %}
+                    <p class="text-danger">{{ error|escape }}</p>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+                {% endif %}
+                <div class="col-md-4">
+                    <label for="{{ utilisateur_form.avatar.id_for_label }}" class="form-label">Avatar</label>
+                    {{ utilisateur_form.avatar }}
+                    {% if utilisateur_form.avatar.errors %}
+                    {% for error in utilisateur_form.avatar.errors %}
+                    <p class="text-danger">{{ error|escape }}</p>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="col-12">
+                    <button class="btn btn-primary" type="submit">Valider</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+{% if droit_modifier_password %}
+<form class="row g-3 needs-validation" method="post" novalidate>
+    {% csrf_token %}
+    <div class="card mb-3">
+        <div class="card-header">
+            <h4 class="card-title">Mot de passe</h4>
+        </div>
+        <div class="card-body bg-light">
+            <div class="form-validation">
+                <div class="row">
+                    {% if afficher_current_password %}
+                    <div class="col-md-4">
+                        <label for="{{ password_form.old_password.id_for_label }}" class="form-label">Mot de passe actuel</label>
+                        <input id="{{ password_form.old_password.id_for_label }}" type="password" class="form-control" name="{{ password_form.old_password.html_name }}"
+                               {% if password_form.old_password.value %}value="{{ password_form.old_password.value }}" {% endif %}
+                        />
+                        {% if password_form.old_password.errors %}
+                        {% for error in password_form.old_password.errors %}
+                        <p class="text-danger">{{ error|escape }}</p>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                    <div class="col-md-{% if afficher_current_password %}4{% else %}6{% endif %}">
+                        <label for="{{ password_form.new_password1.id_for_label }}" class="form-label">Nouveau mot de passe</label>
+                        <input id="{{ password_form.new_password1.id_for_label }}" type="password" class="form-control" name="{{ password_form.new_password1.html_name }}"
+                               {% if password_form.new_password1.value %}value="{{ password_form.new_password1.value }}" {% endif %}
+                        />
+                        {% if password_form.new_password1.errors %}
+                        {% for error in password_form.new_password1.errors %}
+                        <p class="text-danger">{{ error|escape }}</p>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="col-md-{% if afficher_current_password %}4{% else %}6{% endif %}">
+                        <label for="{{ password_form.new_password2.id_for_label }}" class="form-label">Confirmation du mot de passe</label>
+                        <input id="{{ password_form.new_password2.id_for_label }}" type="password" class="form-control" name="{{ password_form.new_password2.html_name }}"
+                               {% if password_form.new_password2.value %}value="{{ password_form.new_password2.value }}" {% endif %}
+                        />
+                        {% if password_form.new_password2.errors %}
+                        {% for error in password_form.new_password2.errors %}
+                        <p class="text-danger">{{ error|escape }}</p>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="col-12">
+                        <button class="btn btn-primary valider" name="change-password-submit" type="submit">Enregistrer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+{% endif %}
+{% endblock %}

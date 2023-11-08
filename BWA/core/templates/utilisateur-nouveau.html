@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <!-- DEBUT CONTENU -->
+    <form class="row g-3" method="post" novalidate enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="card mb-3">
+            <div class="card-header">
+                <h5 class="mb-0">Utilisateur</h5>
+            </div>
+            <div class="card-body bg-light">
+                <div class="row">
+                    {% comment %} GESTION DES ERREURS {% endcomment %}
+                    {% if form.errors %}
+                        {% for error in form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                <strong>{{ error|escape }}</strong>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    <div class="col-md-2">
+                        <label for="{{ form.civilite.id_for_label }}" class="form-label">Civilité<span class="text-danger">*</span> </label>
+                        {{ form.civilite }}
+                        {% if form.civilite.errors %}
+                            {% for error in form.civilite.errors %}
+                                <p class="text-danger">{{ error|escape }}</p>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="col-md-5">
+                        <label for="{{ form.first_name.id_for_label }}" class="form-label">Prénom<span class="text-danger">*</span> </label>
+                        {{ form.first_name }}
+                        {% if form.first_name.errors %}
+                            {% for error in form.first_name.errors %}
+                                <p class="text-danger">{{ error|escape }}</p>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="col-md-5">
+                        <label for="{{ form.last_name.id_for_label }}" class="form-label">Nom<span class="text-danger">*</span> </label>
+                        {{ form.last_name }}
+                        {% if form.last_name.errors %}
+                            {% for error in form.last_name.errors %}
+                                <p class="text-danger">{{ error|escape }}</p>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="col-md-4">
+                        <label for="{{ form.email.id_for_label }}" class="form-label">Email<span class="text-danger">*</span> </label>
+                        {{ form.email }}
+                        {% if form.email.errors %}
+                            {% for error in form.email.errors %}
+                                <p class="text-danger">{{ error|escape }}</p>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="col-md-4">
+                        <label for="{{ form.groups.id_for_label }}" class="form-label">Rôle<span class="text-danger">*</span> </label>
+                        {{ form.groups }}
+                        {% if form.groups.errors %}
+                            {% for error in form.groups.errors %}
+                                <p class="text-danger">{{ error|escape }}</p>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="col-md-4">
+                        <label for="{{ form.avatar.id_for_label }}" class="form-label">Avatar</label>
+                        {{ form.avatar }}
+                        {% if form.avatar.errors %}
+                            {% for error in form.avatar.errors %}
+                                <p class="text-danger">{{ error|escape }}</p>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="col-12">
+                        <button class="btn btn-primary" type="submit">Valider</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}
