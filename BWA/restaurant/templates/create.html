@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Créer un restaurant</title>
+  </head>
+  <body>
+    <h1>Créer un restaurant</h1>
+    <form method="post">
+      {% csrf_token %} {{ form.as_p }}
+
+      <h2>Adresse</h2>
+      {{ adresse_formset.management_form }} 
+      {{ adresse_formset.non_form_errors}} 
+      {% for form in adresse_formset.forms %} 
+      {{ form.as_p }} 
+      {% endfor %}
+
+      <input type="submit" value="Enregistrer" />
+    </form>
+  </body>
+</html>
