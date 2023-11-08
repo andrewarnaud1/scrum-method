@@ -27,6 +27,6 @@ urlpatterns = [
     path('restaurant/', include('restaurant.urls')),
 
     # path('utilisateur/', include('restaurant.urls')),
-
+    
     path('map/', views.map_view, name='map'),
 ]
