@@ -10,7 +10,7 @@ conn = sqlite3.connect("db.sqlite3")  # Replace with your actual database file
 print(conn)
 
 # Read data from the database
-query = "SELECT * FROM restaurants"  # Adjust your SQL query as needed
+query = "SELECT * FROM adresse"  # Adjust your SQL query as needed
 df = pd.read_sql_query(query, conn)
 
 # Créez un groupe de marqueurs
