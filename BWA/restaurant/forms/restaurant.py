@@ -11,7 +11,13 @@ class RestaurantForm(forms.ModelForm):
         new_raison_sociale = self.cleaned_data.get("raison_sociale")
         new_addresse = self.cleaned_data.get("addresse")
 
-        if Restaurant.objects.filter(
-            raison_sociale=new_raison_sociale, addresse=new_addresse
-        ).exists():
-            raise forms.ValidationError("Restaurant existant")
+        errors = {}
+
+        if Restaurant.objects.filter(addresse=new_addresse).exists():
+            errors['addresse'] = 'Un restaurant avec cette adresse existe déjà.'
+
+        if Restaurant.objects.filter(raison_sociale=new_raison_sociale, addresse=new_addresse).exists():
+            errors['raison_sociale'] = 'Ce restaurant existe déjà.'
+
+        if errors:
+            raise forms.ValidationError(errors)
