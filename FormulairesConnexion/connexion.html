@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" lang="fr">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page de Connexion</title>
+    <link rel="stylesheet" href="connstyle.css">
+    
+</head>
+
+<body>
+    <div class="login-page">
+        <div class="form">
+          <form id="sinscrire">
+            <input type="text" id="newNOM" name="newNOM" placeholder="NOM"/>
+            <input type="text" id="newPrenom" name="newPrenom" placeholder="Prénom"/>
+            <input type="text" id="newUsername" name="newUsername" placeholder="Nom d'utilisateur"/>
+            <input type="password" id="newMDP" name="newMDP" placeholder="MotDePasse"/>
+            <input type="text" id="newEMail" name="newEMail" placeholder="adresse@email.com"/>
+            <button>S'ENREGISTRER</button>
+            <p class="message">Déjà membre ? <a href="#" onclick="cacheurform('sinscrire')">Connectez-vous.</a></p>
+          </form>
+          <form id="seconnecter">
+            <input type="text" id="nomuser" name="nomuser" placeholder="Nom d'utilisateur"/>
+            <input type="password" id="lemotdepasse" name="lemotdepasse" placeholder="MotDePasse"/>
+            <button>SE CONNECTER</button>
+            <p class="message">Pas encore de compte ? <a href="#" onclick="cacheurform('seconnecter')">Créer un compte.</a></p>
+          </form>
+        </div>
+      </div>
+    <script src="conndyna.js"></script>
+</body>
+
+</html>
