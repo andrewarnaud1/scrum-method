@@ -23,4 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('restaurant/', include('restaurant.urls')),
+
+    # path('utilisateur/', include('restaurant.urls')),
 ]
