@@ -1,14 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
-    <meta charset="UTF-8" lang="fr">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page de Connexion</title>
-    <link rel="stylesheet" href="connstyle.css">
-    
+    <link rel="stylesheet" href="{% static 'css/connstyle.css' %}">
 </head>
-
 <body>
     <div class="login-page">
         <div class="form">
@@ -29,7 +30,7 @@
           </form>
         </div>
       </div>
-    <script src="conndyna.js"></script>
-</body>
-
-</html>
+      <script src="{% static 'js/conndyna.js' %}"></script>
+  </body>
+  </html>
+  {% endblock %}

@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls import include
+from core.views import home  # Importez la vue home
 
 from map import views
 
@@ -27,6 +28,10 @@ urlpatterns = [
     path('restaurant/', include('restaurant.urls')),
 
     path('utilisateur/', include('utilisateur.urls')),
+
+    path('reservation/', include('reservation.urls')),
     
     path('map/', views.map_view, name='map'),
+
+    path('', home, name='home'),
 ]

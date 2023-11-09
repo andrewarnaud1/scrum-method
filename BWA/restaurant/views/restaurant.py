@@ -20,11 +20,11 @@ def create_restaurant(request):
         adresse_formset = AdresseFormSet(instance=Restaurant())  # Utilisez une instance vide de Restaurant ici
     return render(
         request,
-        "create.html",
+        "create_restaurant.html",
         {"form": form, "adresse_formset": adresse_formset},
     )
 
 
 def restaurant_list(request):
     restaurants = Restaurant.objects.all()
-    return render(request, "list.html", {"restaurants": restaurants})
+    return render(request, "list_restaurant.html", {"restaurants": restaurants})

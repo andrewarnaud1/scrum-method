@@ -1,0 +1,42 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="title" content="BWA">
+    <meta name="author" content="HappyFAM">
+    <link rel="icon" href="{% static 'images/BWA-icone.svg' %}" />
+    <title>{% block title %}BWA{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+    <script src="{% static 'js/dynamisme.js' %}"></script>
+    {% block extrahead %}{% endblock %}
+</head>
+<body>
+    <div class="loader">
+        <img id="logo1" class="logochargement small-logo" src="{% static 'images/BWA-icone.svg' %}" alt="BWA">
+        <img id="logo2" class="logochargement small-logo" src="{% static 'images/BWA-resa.svg' %}" alt="BWA">
+        <div class="loader-dots">
+            <div class="loader-dot"></div>
+            <div class="loader-dot"></div>
+            <div class="loader-dot"></div>
+        </div>
+    </div>
+    <div class="content">
+        <nav>
+            <ul>
+                <li><a href="#">Accueil</a></li>
+                <li><a href="#">Restaurants</a></li>
+                <li><a href="#">Réservations</a></li>
+                <li><a class="laconnexion" href="base.html">Connexion</a></li>
+            </ul>
+        </nav>
+        {% block content %}
+        <h1>Bienvenue sur BWA, t'as la dalle ?</h1>
+        <p>Nous sommes heureux de vous accueillir.</p>
+        {% endblock %}
+    </div>
+</body>
+</html>
